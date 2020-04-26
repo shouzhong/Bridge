@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.os.Process;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ActivityUtils {
@@ -96,12 +98,20 @@ public class ActivityUtils {
     }
 
     public static Activity get(int position) {
-        if (position > size() - 1) return null;
+        if (position > size() - 1 || position < 0) return null;
         int i = 0;
         for (Activity act : ACTIVITIES.keySet()) {
             if (i++ == position) return act;
         }
         return null;
+    }
+
+    public static List<Activity> getActivities() {
+        List<Activity> list = new ArrayList<>();
+        for (Activity act : ACTIVITIES.keySet()) {
+            list.add(act);
+        }
+        return list;
     }
 
     public static String getLifecycle(Activity act) {

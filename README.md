@@ -5,6 +5,8 @@
 ### 依赖
 ```
 implementation 'com.shouzhong:Bridge:1.0.0'
+implementation 'org.greenrobot:eventbus:3.2.0'
+implementation 'com.google.code.gson:gson:2.8.6'
 ```
 ### 代码
 在Applicaition的onCreate方法中调用

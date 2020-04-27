@@ -1,10 +1,12 @@
 package com.shouzhong.bridge.demo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.shouzhong.bridge.ActivityUtils;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickAct(View v) {
         Intent intent = new Intent(this, ActTest1Activity.class);
+        intent.putExtra("unique_id", ActivityUtils.getUniqueId(this));
         startActivity(intent);
     }
 }

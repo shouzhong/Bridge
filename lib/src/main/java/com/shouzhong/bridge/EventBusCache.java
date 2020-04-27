@@ -21,8 +21,7 @@ class EventBusCache {
     static boolean hasSubscriberForEvent(String s) {
         if (TextUtils.isEmpty(s)) return false;
         for (List<String> list : TYPE_BY_SUBSCRIBER.values()) {
-            if (list == null) continue;
-            if (list.contains(s)) return true;
+            if (list != null && list.contains(s)) return true;
         }
         return false;
     }
@@ -31,7 +30,7 @@ class EventBusCache {
         if (TextUtils.isEmpty(s)) return;
         List<String> types = findMethods(s);
         if (types == null) return;
-         TYPE_BY_SUBSCRIBER.put(s, types);
+        TYPE_BY_SUBSCRIBER.put(s, types);
     }
 
     static void unregister(String s) {

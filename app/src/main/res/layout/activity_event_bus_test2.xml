@@ -5,5 +5,39 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#000">
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="next"
+        android:onClick="onClickNext"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="post"
+        android:onClick="onClickPost"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="postSticky"
+        android:onClick="onClickPostSticky"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="removeStickyEvent"
+        android:onClick="onClickRemoveStickyEvent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="removeAllStickyEvents"
+        android:onClick="onClickRemoveAllStickyEvents"/>
 </LinearLayout>

@@ -4,7 +4,7 @@
 ## 使用
 ### 依赖
 ```
-implementation 'com.shouzhong:Bridge:1.0.0'
+implementation 'com.shouzhong:Bridge:1.0.1'
 implementation 'org.greenrobot:eventbus:3.2.0'
 implementation 'com.google.code.gson:gson:2.8.6'
 ```
@@ -21,12 +21,13 @@ ActivityUtils
 
 方法 | 说明
 ------------ | -------------
-size | 当前进程打开activity数
-allSize | 所有进程打开activity数
-getLast | 获取当前进程最后一个打开的activity
-get | 获取当前进程第n个打开的activity
 getActivities | 获取当前进程activity栈
-getLifecycle | 获取某个activity的生命周期
-finish | finish所有匹配class的activity
+geTopActivity | 获取当前进程顶部activity
+getActivity | 获取当前进程的某个activity
+getLifecycle | 获取某个activity的当前生命周期
+size | 所有进程activity数
+size(带参数) | 某个进程activity数
+finish | finish某个activity
 exit | finish所有进程的所有activity
 exit(带参数) | finish某个进程的所有activity
+getUniqueId | 获取activity的标识

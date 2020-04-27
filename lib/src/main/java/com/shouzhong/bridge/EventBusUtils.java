@@ -35,6 +35,7 @@ public class EventBusUtils {
     }
 
     public static void unregister(Object obj) {
+        if (obj == null) return;
         if (!get().isRegistered(obj)) return;
         get().unregister(obj);
         int hashCode = Utils.hashCode(obj);
@@ -42,6 +43,7 @@ public class EventBusUtils {
     }
 
     public static boolean isRegistered(Object subscriber) {
+        if (subscriber == null) return false;
         return get().isRegistered(subscriber);
     }
 
@@ -56,16 +58,19 @@ public class EventBusUtils {
     }
 
     public static <T> T getStickyEvent(Class<T> eventType) {
+        if (eventType == null) return null;
         return get().getStickyEvent(eventType);
     }
 
     public static <T> T removeStickyEvent(Class<T> eventType) {
+        if (eventType == null) return null;
         T t = get().removeStickyEvent(eventType);
         sendBroadcast(0, "removeStickyEvent",  eventType.getName());
         return t;
     }
 
     public static boolean removeStickyEvent(Object event) {
+        if (event == null) return false;
         boolean b = get().removeStickyEvent(event);
         sendBroadcast(0, "removeStickyEvent",  event.getClass().getName());
         return b;
@@ -76,6 +81,7 @@ public class EventBusUtils {
     }
 
     public static boolean hasSubscriberForEvent(Class<?> eventClass) {
+        if (eventClass == null) return false;
         return get().hasSubscriberForEvent(eventClass) || EventBusCache.hasSubscriberForEvent(eventClass.getName());
     }
 }

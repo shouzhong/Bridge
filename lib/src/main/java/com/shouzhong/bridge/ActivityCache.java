@@ -26,11 +26,11 @@ class ActivityCache {
             tail.setAccessible(true);
             return (Map.Entry<String, String>) tail.get(CACHE);
         } catch (Exception e) {}
-        return get(size() - 1);
+        return get(CACHE.size() - 1);
     }
 
     static Map.Entry<String, String> get(int position) {
-        if (position > size() - 1) return null;
+        if (position > CACHE.size() - 1) return null;
         int i = 0;
         for (Map.Entry<String, String> entry : CACHE.entrySet()) {
             if (i++ == position) return entry;
@@ -38,7 +38,19 @@ class ActivityCache {
         return null;
     }
 
+    static String getLifecycle(String key) {
+        return CACHE.get(key);
+    }
+
     static int size() {
         return CACHE.size();
+    }
+
+    static int size(int pid) {
+        int i = 0;
+        for (String s : CACHE.keySet()) {
+            if (s.endsWith(";" + pid)) i++;
+        }
+        return i;
     }
 }

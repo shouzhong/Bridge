@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Process;
 import android.text.TextUtils;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -87,14 +88,18 @@ public class BridgeReceiver extends BroadcastReceiver {
                             return;
                         }
                         if (TextUtils.equals(action, "finish")) {
-                            for (Activity act : ActivityUtils.ACTIVITIES.keySet()) {
-                                if (TextUtils.equals(data, act.getClass().getName())) act.finish();
+                            List<Activity> list = ActivityUtils.getActivities();
+                            for (Activity act : list) {
+                                if (TextUtils.equals(data, act.getClass().getName()) || TextUtils.equals(data, ActivityUtils.getUniqueId(act))) {
+                                    act.finish();
+                                }
                             }
                             return;
                         }
                         if (TextUtils.equals(action, "exit")) {
                             if (!TextUtils.isEmpty(data) && !TextUtils.equals(data, Utils.getCurrentProcessName())) return;
-                            for (Activity act : ActivityUtils.ACTIVITIES.keySet()) {
+                            List<Activity> list = ActivityUtils.getActivities();
+                            for (Activity act : list) {
                                 act.finish();
                             }
                             return;

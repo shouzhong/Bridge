@@ -3,6 +3,7 @@ package com.shouzhong.bridge;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.os.Process;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -28,17 +29,40 @@ class Utils {
     }
 
     static String getCurrentProcessName() {
-        String name = getCurrentProcessNameByFile();
+        int pid = Process.myPid();
+        String name = getProcessNameByFile(pid);
         if (!TextUtils.isEmpty(name)) return name;
-        name = getCurrentProcessNameByAms();
+        name = getProcessNameByAms(pid);
         if (!TextUtils.isEmpty(name)) return name;
         name = getCurrentProcessNameByReflect();
         return name;
     }
 
-    private static String getCurrentProcessNameByFile() {
+    static String getProcessName(int pid) {
+        String name = getProcessNameByFile(pid);
+        if (!TextUtils.isEmpty(name)) return name;
+        name = getProcessNameByAms(pid);
+        return name;
+    }
+
+    static int getPid(String processName) {
         try {
-            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
+            ActivityManager am = (ActivityManager) Bridge.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+            if (am == null) return 0;
+            List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
+            if (info == null || info.size() == 0) return 0;
+            for (ActivityManager.RunningAppProcessInfo aInfo : info) {
+                if (TextUtils.equals(aInfo.processName, processName)) return aInfo.pid;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+        return 0;
+    }
+
+    private static String getProcessNameByFile(int pid) {
+        try {
+            File file = new File("/proc/" + pid + "/" + "cmdline");
             BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
             String processName = mBufferedReader.readLine().trim();
             mBufferedReader.close();
@@ -49,13 +73,12 @@ class Utils {
         }
     }
 
-    private static String getCurrentProcessNameByAms() {
+    private static String getProcessNameByAms(int pid) {
         try {
             ActivityManager am = (ActivityManager) Bridge.getApp().getSystemService(Context.ACTIVITY_SERVICE);
             if (am == null) return "";
             List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
             if (info == null || info.size() == 0) return "";
-            int pid = android.os.Process.myPid();
             for (ActivityManager.RunningAppProcessInfo aInfo : info) {
                 if (aInfo.pid == pid) {
                     if (aInfo.processName != null) {

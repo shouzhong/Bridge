@@ -12,8 +12,8 @@ public class EventBusUtils {
     }
 
     static void sendBroadcast(int pid, String action, String data) {
-        String permission = Bridge.getApp().getPackageName() + ".permission.RECEIVER_PROCESS_MESSAGE";
-        Intent intent = new Intent(Bridge.getApp().getPackageName() + ".action.PROCESS_MESSAGE");
+        String permission = Bridge.getApp().getPackageName() + ".shouzhong.permission.RECEIVER_PROCESS_MESSAGE";
+        Intent intent = new Intent(Bridge.getApp().getPackageName() + ".shouzhong.action.PROCESS_MESSAGE");
         intent.putExtra("type", "eventbus");
         intent.putExtra("pid", pid);
         intent.putExtra("action", action);

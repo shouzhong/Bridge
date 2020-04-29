@@ -4,7 +4,7 @@
 ## 使用
 ### 依赖
 ```
-implementation 'com.shouzhong:Bridge:1.0.1'
+implementation 'com.shouzhong:Bridge:1.0.2'
 implementation 'org.greenrobot:eventbus:3.2.0'
 implementation 'com.google.code.gson:gson:2.8.6'
 ```

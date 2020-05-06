@@ -40,31 +40,31 @@ public class ActivityUtils {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 ACTIVITIES.put(activity, ON_CREATE);
-                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ON_CREATE);
+                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ACTIVITIES.get(activity));
             }
 
             @Override
             public void onActivityStarted(Activity activity) {
                 ACTIVITIES.put(activity, ON_START);
-                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ON_START);
+                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ACTIVITIES.get(activity));
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
                 ACTIVITIES.put(activity, ON_RESUME);
-                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ON_RESUME);
+                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ACTIVITIES.get(activity));
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
                 ACTIVITIES.put(activity, ON_PAUSE);
-                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ON_PAUSE);
+                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ACTIVITIES.get(activity));
             }
 
             @Override
             public void onActivityStopped(Activity activity) {
                 ACTIVITIES.put(activity, ON_STOP);
-                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ON_STOP);
+                sendBroadcast(0, "put", getUniqueId(activity) + "->" + ACTIVITIES.get(activity));
             }
 
             @Override

@@ -129,4 +129,11 @@ class Utils {
         }
         return hashCode;
     }
+
+    static boolean classExit(String clsName) {
+        try {
+            return Class.forName(clsName) != null;
+        } catch (Exception e) {}
+        return false;
+    }
 }

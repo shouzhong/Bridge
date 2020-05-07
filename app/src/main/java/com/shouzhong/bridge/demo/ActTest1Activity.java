@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ProcessUtils;
-import com.shouzhong.bridge.ActivityUtils;
+import com.shouzhong.bridge.ActivityStack;
 
 public class ActTest1Activity extends AppCompatActivity {
     TextView tv;
@@ -26,41 +26,41 @@ public class ActTest1Activity extends AppCompatActivity {
 
     public void onClickNext(View v) {
         Intent intent = new Intent(this, ActTest2Activity.class);
-        intent.putExtra("unique_id", ActivityUtils.getUniqueId(this));
+        intent.putExtra("unique_id", ActivityStack.getUniqueId(this));
         startActivity(intent);
     }
 
     public void onClickSize(View v) {
         StringBuffer sb = new StringBuffer();
         sb.append("currentProcessName:").append(ProcessUtils.getCurrentProcessName()).append("\n");
-        sb.append("all=").append(ActivityUtils.size()).append("\n");
-        sb.append("current=").append(ActivityUtils.size(Process.myPid())).append("\n");
-        sb.append("main=").append(ActivityUtils.size(getPackageName())).append("\n");
-        sb.append("test=").append(ActivityUtils.size(getPackageName() + ":test")).append("\n");
+        sb.append("all=").append(ActivityStack.size()).append("\n");
+        sb.append("current=").append(ActivityStack.size(Process.myPid())).append("\n");
+        sb.append("main=").append(ActivityStack.size(getPackageName())).append("\n");
+        sb.append("test=").append(ActivityStack.size(getPackageName() + ":test")).append("\n");
         tv.setText(sb.toString());
     }
 
     public void onClickFinishTest1(View v) {
-        ActivityUtils.finish(ActTest1Activity.class);
+        ActivityStack.finish(ActTest1Activity.class);
     }
 
     public void onClickFinishTest2(View v) {
-        ActivityUtils.finish(ActTest2Activity.class);
+        ActivityStack.finish(ActTest2Activity.class);
     }
 
     public void onClickFinishPrevious(View v) {
-        ActivityUtils.finish(previousUniqueId);
+        ActivityStack.finish(previousUniqueId);
     }
 
     public void onClickExitMain(View v) {
-        ActivityUtils.exit(getPackageName());
+        ActivityStack.exit(getPackageName());
     }
 
     public void onClickExitTest(View v) {
-        ActivityUtils.exit(getPackageName() + ":test");
+        ActivityStack.exit(getPackageName() + ":test");
     }
 
     public void onClickExitAll(View v) {
-        ActivityUtils.exit();
+        ActivityStack.exit();
     }
 }

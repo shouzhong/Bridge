@@ -47,6 +47,7 @@ class ActivityCache {
     }
 
     static int size(int pid) {
+        if (pid == 0) return 0;
         int i = 0;
         for (String s : CACHE.keySet()) {
             if (s.endsWith(";" + pid)) i++;

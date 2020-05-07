@@ -33,5 +33,12 @@
         <activity
             android:name=".EventBusTest2Activity"
             android:process=":test"/>
+
+        <activity
+            android:name=".FrgmTest1Activity" />
+
+        <activity
+            android:name=".FrgmTest2Activity"
+            android:process=":test"/>
     </application>
 </manifest>

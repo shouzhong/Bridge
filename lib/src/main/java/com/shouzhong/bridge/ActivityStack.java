@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActivityUtils {
+public class ActivityStack {
     public static final String ON_CREATE = "onCreate";
     public static final String ON_START = "onStart";
     public static final String ON_RESUME = "onResume";
@@ -117,8 +117,7 @@ public class ActivityUtils {
      */
     public static Activity getActivity(String uniqueId) {
         if (ACTIVITIES.isEmpty() || TextUtils.isEmpty(uniqueId)) return null;
-        List<Activity> list = getActivities();
-        for (Activity act : list) {
+        for (Activity act : ACTIVITIES.keySet()) {
             if (TextUtils.equals(uniqueId, getUniqueId(act))) return act;
         }
         return null;

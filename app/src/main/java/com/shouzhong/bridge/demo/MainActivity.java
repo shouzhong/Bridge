@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shouzhong.bridge.ActivityUtils;
+import com.shouzhong.bridge.ActivityStack;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -22,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickAct(View v) {
         Intent intent = new Intent(this, ActTest1Activity.class);
-        intent.putExtra("unique_id", ActivityUtils.getUniqueId(this));
+        intent.putExtra("unique_id", ActivityStack.getUniqueId(this));
+        startActivity(intent);
+    }
+
+    public void onClickFrgm(View v) {
+        Intent intent = new Intent(this, FrgmTest1Activity.class);
         startActivity(intent);
     }
 }

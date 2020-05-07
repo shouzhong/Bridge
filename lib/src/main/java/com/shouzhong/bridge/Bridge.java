@@ -29,7 +29,8 @@ public class Bridge {
         String permission = Bridge.getApp().getPackageName() + ".shouzhong.permission.RECEIVER_PROCESS_MESSAGE";
         IntentFilter filter = new IntentFilter(action);
         Bridge.getApp().registerReceiver(new BridgeReceiver(), filter, permission, null);
-        ActivityUtils.init();
+        ActivityStack.init();
         EventBusUtils.init();
+        FragmentStack.init();
     }
 }

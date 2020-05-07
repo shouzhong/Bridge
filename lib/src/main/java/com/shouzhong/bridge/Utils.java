@@ -130,7 +130,7 @@ class Utils {
         return hashCode;
     }
 
-    static boolean classExit(String clsName) {
+    static boolean classExists(String clsName) {
         try {
             return Class.forName(clsName) != null;
         } catch (Exception e) {}

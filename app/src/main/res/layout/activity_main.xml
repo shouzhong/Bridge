@@ -17,4 +17,10 @@
         android:layout_height="wrap_content"
         android:text="Activity"
         android:onClick="onClickAct"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fragment"
+        android:onClick="onClickFrgm"/>
 </LinearLayout>

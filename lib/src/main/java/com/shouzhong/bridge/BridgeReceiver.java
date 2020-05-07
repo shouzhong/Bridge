@@ -72,7 +72,7 @@ public class BridgeReceiver extends BroadcastReceiver {
                         if (TextUtils.equals(action, "init")) {
                             if (!Utils.isMainProcess()) return;
                             for (String s : ActivityCache.CACHE.keySet()) {
-                                ActivityUtils.sendBroadcast(pid, "put", s + "->" + ActivityCache.CACHE.get(s));
+                                ActivityStack.sendBroadcast(pid, "put", s + "->" + ActivityCache.CACHE.get(s));
                             }
                             return;
                         }
@@ -88,9 +88,9 @@ public class BridgeReceiver extends BroadcastReceiver {
                             return;
                         }
                         if (TextUtils.equals(action, "finish")) {
-                            List<Activity> list = ActivityUtils.getActivities();
+                            List<Activity> list = ActivityStack.getActivities();
                             for (Activity act : list) {
-                                if (TextUtils.equals(data, act.getClass().getName()) || TextUtils.equals(data, ActivityUtils.getUniqueId(act))) {
+                                if (TextUtils.equals(data, act.getClass().getName()) || TextUtils.equals(data, ActivityStack.getUniqueId(act))) {
                                     act.finish();
                                 }
                             }
@@ -98,10 +98,32 @@ public class BridgeReceiver extends BroadcastReceiver {
                         }
                         if (TextUtils.equals(action, "exit")) {
                             if (!TextUtils.isEmpty(data) && !TextUtils.equals(data, Utils.getCurrentProcessName())) return;
-                            List<Activity> list = ActivityUtils.getActivities();
+                            List<Activity> list = ActivityStack.getActivities();
                             for (Activity act : list) {
                                 act.finish();
                             }
+                            return;
+                        }
+                    }
+                    if (TextUtils.equals(type, "fragment")) {
+                        int pid = intent.getIntExtra("pid", 0);
+                        String action = intent.getStringExtra("action");
+                        if (TextUtils.equals(action, "init")) {
+                            if (!Utils.isMainProcess()) return;
+                            for (String s : FragmentCache.CACHE.keySet()) {
+                                FragmentStack.sendBroadcast(pid, "put", s + "->" + FragmentCache.CACHE.get(s));
+                            }
+                            return;
+                        }
+                        if (pid != 0 && pid != Process.myPid()) return;
+                        String data = intent.getStringExtra("data");
+                        if (TextUtils.equals(action, "put")) {
+                            String[] ss = data.split("->", 2);
+                            FragmentCache.put(ss[0], ss[1]);
+                            return;
+                        }
+                        if (TextUtils.equals(action, "remove")) {
+                            FragmentCache.remove(data);
                             return;
                         }
                     }

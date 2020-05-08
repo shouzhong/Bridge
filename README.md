@@ -41,3 +41,4 @@ getFragment | 获取当前进程的某个fragment
 getLifecycle | 获取某个fragment的生命周期
 size | 所有进程fragment数
 size(带参数) | 某个进程fragment数
+getUniqueId | 获取fragment的标识

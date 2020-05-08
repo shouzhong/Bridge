@@ -14,8 +14,7 @@ public class Bridge {
                 @SuppressLint("PrivateApi")
                 Class<?> activityThread = Class.forName("android.app.ActivityThread");
                 Object thread = activityThread.getMethod("currentActivityThread").invoke(null);
-                Object app = activityThread.getMethod("getApplication").invoke(thread);
-                Bridge.app = (Application) app;
+                Bridge.app = (Application) activityThread.getMethod("getApplication").invoke(thread);
             } catch (Exception e) {
                 e.printStackTrace();
             }

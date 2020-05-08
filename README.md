@@ -1,6 +1,6 @@
 # Bridge
 ## 说明
-对eventbus，activity栈进行了跨进程适配
+对eventbus，activity栈，fragment栈进行了跨进程适配，fragment栈只支持androidx
 ## 使用
 ### 依赖
 ```

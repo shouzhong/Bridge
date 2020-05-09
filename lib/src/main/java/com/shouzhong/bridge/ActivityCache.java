@@ -1,5 +1,6 @@
 package com.shouzhong.bridge;
 
+import android.app.Activity;
 import android.text.TextUtils;
 
 import java.lang.reflect.Field;
@@ -17,6 +18,14 @@ class ActivityCache {
     static void remove(String s) {
         if (TextUtils.isEmpty(s)) return;
         CACHE.remove(s);
+    }
+
+    static boolean contains(Class<? extends Activity> cls) {
+        if (cls == null) return false;
+        for (String s : CACHE.keySet()) {
+            if (s.startsWith(cls.getName() + ";")) return true;
+        }
+        return false;
     }
 
     static Map.Entry<String, String> getLast() {

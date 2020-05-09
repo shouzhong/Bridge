@@ -123,6 +123,7 @@ class Utils {
         int hashCode;
         try {
             Method method = Utils.getMethodByReflect(Object.class, "identityHashCode", Object.class);
+            method.setAccessible(true);
             hashCode = (int) method.invoke(null, obj);
         } catch (Exception e) {
             hashCode = obj.hashCode();

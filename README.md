@@ -4,7 +4,7 @@
 ## 使用
 ### 依赖
 ```
-implementation 'com.shouzhong:Bridge:1.0.3'
+implementation 'com.shouzhong:Bridge:1.0.4'
 implementation 'org.greenrobot:eventbus:3.2.0'
 implementation 'com.google.code.gson:gson:2.8.6'
 ```
@@ -27,6 +27,7 @@ getActivity | 获取当前进程的某个activity
 getLifecycle | 获取某个activity的当前生命周期
 size | 所有进程activity数
 size(带参数) | 某个进程activity数
+contains | 是否包含某个类型的activity
 finish | finish某个或者某类activity
 exit | finish所有进程的所有activity
 exit(带参数) | finish某个进程的所有activity
@@ -41,4 +42,5 @@ getFragment | 获取当前进程的某个fragment
 getLifecycle | 获取某个fragment的生命周期
 size | 所有进程fragment数
 size(带参数) | 某个进程fragment数
+contains | 是否包含某个类型的fragment
 getUniqueId | 获取fragment的标识

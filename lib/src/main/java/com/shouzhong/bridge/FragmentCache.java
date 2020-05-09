@@ -2,6 +2,8 @@ package com.shouzhong.bridge;
 
 import android.text.TextUtils;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.LinkedHashMap;
 
 class FragmentCache {
@@ -15,6 +17,14 @@ class FragmentCache {
     static void remove(String key) {
         if (TextUtils.isEmpty(key)) return;
         CACHE.remove(key);
+    }
+
+    static boolean contains(Class<? extends Fragment> cls) {
+        if (cls == null) return false;
+        for (String s : CACHE.keySet()) {
+            if (s.startsWith(cls.getName() + ";")) return true;
+        }
+        return false;
     }
 
     static String getLifecycle(String key) {

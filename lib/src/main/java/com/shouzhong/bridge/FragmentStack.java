@@ -210,6 +210,16 @@ public class FragmentStack {
     }
 
     /**
+     * 是否包含某个类型的fragment
+     *
+     * @param cls
+     * @return
+     */
+    public static boolean contains(Class<? extends Fragment> cls) {
+        return FragmentCache.contains(cls);
+    }
+
+    /**
      * 获取全部进程的fragment数
      *
      * @return

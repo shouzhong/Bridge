@@ -146,6 +146,16 @@ public class ActivityStack {
     }
 
     /**
+     * 是否包含某个类型的activity
+     *
+     * @param cls
+     * @return
+     */
+    public static boolean contains(Class<? extends Activity> cls) {
+        return ActivityCache.contains(cls);
+    }
+
+    /**
      * 获取全部进程的activity数
      *
      * @return

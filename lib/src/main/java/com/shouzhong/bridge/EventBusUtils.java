@@ -30,7 +30,7 @@ public class EventBusUtils {
     public static void register(Object subscriber) {
         if (subscriber == null) return;
         get().register(subscriber);
-        int hashCode = Utils.hashCode(subscriber);
+        int hashCode = System.identityHashCode(subscriber);
         sendBroadcast(0, "register", subscriber.getClass().getName() + ";" + hashCode);
     }
 
@@ -38,7 +38,7 @@ public class EventBusUtils {
         if (obj == null) return;
         if (!get().isRegistered(obj)) return;
         get().unregister(obj);
-        int hashCode = Utils.hashCode(obj);
+        int hashCode = System.identityHashCode(obj);
         sendBroadcast(0, "unregister", obj.getClass().getName() + ";" + hashCode);
     }
 

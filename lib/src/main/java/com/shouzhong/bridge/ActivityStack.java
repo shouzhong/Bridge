@@ -234,13 +234,13 @@ public class ActivityStack {
     }
 
     /**
-     * 获取acitivity的标识
+     * 获取activity的标识
      *
      * @param activity
      * @return
      */
     public static String getUniqueId(Activity activity) {
         if (activity == null) return null;
-        return activity.getClass().getName() + ";" + Utils.hashCode(activity) + ";" + Process.myPid();
+        return activity.getClass().getName() + ";" + System.identityHashCode(activity) + ";" + Process.myPid();
     }
 }

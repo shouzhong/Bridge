@@ -258,6 +258,6 @@ public class FragmentStack {
      */
     public static String getUniqueId(Fragment fragment) {
         if (fragment == null) return null;
-        return fragment.getClass().getName() + ";" + Utils.hashCode(fragment) + ";" + Process.myPid();
+        return fragment.getClass().getName() + ";" + System.identityHashCode(fragment) + ";" + Process.myPid();
     }
 }

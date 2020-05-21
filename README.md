@@ -9,7 +9,7 @@ implementation 'org.greenrobot:eventbus:3.2.0'
 implementation 'com.google.code.gson:gson:2.8.6'
 ```
 ### 代码
-在Applicaition的onCreate方法中调用
+在Application的onCreate方法中调用
 ```
 Bridge.init(this);
 ```

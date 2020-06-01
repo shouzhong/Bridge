@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 15
@@ -21,7 +21,7 @@ android {
 
 dependencies {
     compileOnly 'org.greenrobot:eventbus:3.2.0'
-    compileOnly 'com.blankj:utilcodex:1.28.0'
+    compileOnly 'com.blankj:utilcodex:1.29.0'
     compileOnly 'com.google.code.gson:gson:2.8.6'
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
